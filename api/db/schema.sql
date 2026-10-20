@@ -28,3 +28,14 @@ CREATE TABLE player (
   -- une équipe supprimée rend ses joueurs « agents libres »
   team_id    INTEGER REFERENCES team (id) ON DELETE SET NULL
 );
+
+CREATE TABLE match (
+  id        SERIAL PRIMARY KEY,
+  team_a_id INTEGER NOT NULL REFERENCES team (id) ON DELETE CASCADE,
+  team_b_id INTEGER NOT NULL REFERENCES team (id) ON DELETE CASCADE,
+  score_a   INTEGER,
+  score_b   INTEGER,
+  winner_id INTEGER REFERENCES team (id) ON DELETE SET NULL,
+  played_at TIMESTAMPTZ,
+  CHECK (team_a_id <> team_b_id)
+);

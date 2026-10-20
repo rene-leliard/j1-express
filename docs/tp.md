@@ -21,18 +21,18 @@ avez écrit aujourd'hui, c'est un livrable du partiel.
 
 **Les étapes**
 
-| | Étape | Test |
-|---|---|---|
-| 🟢 | 1.1 La table `match` et la ressource en lecture / écriture | |
-| 🟢 | 1.2 Les règles et le filtre `?status=` | |
-| 🔵 | 1.3 Jouer un match : `POST /api/matches/{id}/play` | `04-matches` |
-| 🔵 | 2.1 Un match simulé : `GET /api/teams/{id}/versus/{opponentId}` | |
-| 🔵 | 2.2 Le classement : `GET /api/players/top` | `05-versus-top` |
-| 🔵 | 3. Le contrat OpenAPI | `06-openapi` |
-| 🔴 | 4. Bonus : `X-Response-Time` et `/stats` | `bonus-07-stats` |
+|     | Étape                                                           | Test             |
+| --- | --------------------------------------------------------------- | ---------------- |
+| 🟢  | 1.1 La table `match` et la ressource en lecture / écriture      |                  |
+| 🟢  | 1.2 Les règles et le filtre `?status=`                          |                  |
+| 🔵  | 1.3 Jouer un match : `POST /api/matches/{id}/play`              | `04-matches`     |
+| 🔵  | 2.1 Un match simulé : `GET /api/teams/{id}/versus/{opponentId}` |                  |
+| 🔵  | 2.2 Le classement : `GET /api/players/top`                      | `05-versus-top`  |
+| 🔵  | 3. Le contrat OpenAPI                                           | `06-openapi`     |
+| 🔴  | 4. Bonus : `X-Response-Time` et `/stats`                        | `bonus-07-stats` |
 
 **Avant chaque étape, lisez le fichier de test.** Il dit exactement ce qu'on attend. Les énoncés ci-dessous
-disent le *pourquoi* et donnent des *indices* ; le *quoi* précis est dans le test.
+disent le _pourquoi_ et donnent des _indices_ ; le _quoi_ précis est dans le test.
 
 ---
 
@@ -107,7 +107,7 @@ Dans l'ordre, dans le handler :
    joueur → 422 sur `teamAId` ou `teamBId` ;
 4. `simulate(...)`, avec `?seed=` facultatif (un `SeedQuerySchema` avec `z.coerce.number().int().optional()`) ;
 5. `recordResult(id, result)` dans le repository : un `UPDATE … WHERE id = $1 AND played_at IS NULL RETURNING
-   id` (pourquoi `AND played_at IS NULL` ? indice : deux requêtes en même temps) ;
+id` (pourquoi `AND played_at IS NULL` ? indice : deux requêtes en même temps) ;
 6. répondre avec la vue relue.
 
 > Question pour `mon-tp.md` : `winner` est un tag dans `MatchResult` mais un `winner_id` dans la table. Où
